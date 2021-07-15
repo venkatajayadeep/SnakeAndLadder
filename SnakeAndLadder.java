@@ -1,35 +1,43 @@
 package BridgeLabz;
 
 public class SnakeAndLadder {
-
-public static void main(String[] args){
 		
+	public static final int ladder = 1;
+	public static final int snake = 2;
+	public static void main(String args[]) {
 		int position = 0;
-		System.out.println("position is " + position);
-		int die = (int) (Math.random() * 10) % 6 + 1;
-			System.out.println("dice value is " + die);
-		int value = (int) (Math.random() * 10) % 3+1;
-		System.out.println("case number is " + value);
-		 
-			switch(value) {
-		   case 1:
-		   System.out.println( "No Play You are in the same position." );
-		   break;
-		  
-		   case 2:
-		   position = (position + die);
-		   System.out.println( "your position after ladder is ::" + position );
-		   break;
-		   
-		   case 3: 
-		   position = (position - die);
-		  
-		  if(position<0){
-			  position = 0;
-		  }
-			 System.out.println( "Your Position after snake is::" + position );
-		   break;
-		   }
+		System.out.println("Current Position is:" + position);
+
+		while(position < 100){
+			int die = (int)Math.floor( ( ( Math.random() * 10 ) % 6) + 1);
+			int choice=(int)Math.floor((Math.random()*10)%3);
+			System.out.println("choice : "+choice);
+			switch(choice){
+			case ladder:
+				System.out.println("Number on die is:" + die);
+				position += die;
+				if(position >= 100){
+					System.out.println("Player win the game!");
+				}
+				else{
+					System.out.println("Player got ladder, New position is:" + position);
+				}
+				break;
+				
+				case snake:
+				System.out.println("Number on die is:" + die);
+				position -= die;
+				if(position < 0){
+					position = 0;
+				}
+				System.out.println("Player got the snake, New position is:" + position);
+				break;
+				
+			default:
+				System.out.println("No Play, Stay at the same position:" + position);
+				
+			}
 		}
+	}
 }
 
