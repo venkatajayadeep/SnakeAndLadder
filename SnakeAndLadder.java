@@ -1,10 +1,49 @@
 package BridgeLabz;
 
 public class SnakeAndLadder {
+	public static final int ladder = 1;
+	public static final int snake = 2;
+	public static void main(String args[]) {
+		int position = 0 , dieCount = 0;
+		System.out.println("Current Position is:" + position);
 
-	public static void main(String[] args) {
-		System.out.println("WelCome");
+		while(position < 100){
+			int die = (int)Math.floor( ( ( Math.random() * 10 ) % 6) + 1);
+			dieCount++;
+			int choice=(int)Math.floor(( Math.random() * 10) % 3);
 
+			switch(choice){
+			case ladder:
+				System.out.println("Number on die is:" + die);
+				position += die;
+				if(position > 100){
+					position -= die;
+					int remaining = 100 - position;
+					System.out.println("Player needs exact " + remaining + " on die to win!");
+				}
+				else if(position == 100){
+					System.out.println("Player win the game!");
+				}
+				else{
+					System.out.println("Player got ladder, New position is:" + position);
+				}
+				break;
+				
+				case snake:
+				System.out.println("Number on die is:" + die);
+				position -= die;
+				if(position < 0){
+					position = 0;
+				}
+				System.out.println("Player got the snake, New position is:" + position);
+				break;
+				
+			default:
+				System.out.println("No Play, Stay at the same position:" + position);
+				
+			}
+		}
+		System.out.println("Total number of times Die played is:" + dieCount);
 	}
 
 }
